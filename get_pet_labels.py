@@ -49,11 +49,11 @@ def get_pet_labels(image_dir):
             filename = os.path.splitext(in_files[idx])[0]
             filename = ''.join((x for x in filename if not x.isdigit()))
             pet_label = filename.lower().replace("_", " ").rstrip(' ')
-#     no_item_im_dic = len(results_dic)
-        if in_files[idx] not in results_dic:
-            results_dic[in_files[idx]] = [pet_label]
-        else:
-            print("** Warning: Duplicate files exist in directory:", in_files[idx])
+#           no_item_im_dic = len(results_dic)
+            if in_files[idx] not in results_dic:
+                results_dic[in_files[idx]] = [pet_label]
+            else:
+                print("** Warning: Duplicate files exist in directory:", in_files[idx])
     
     # Replace None with the results_dic dictionary that you created with this
     # function
