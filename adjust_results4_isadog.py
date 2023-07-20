@@ -68,14 +68,10 @@ def adjust_results4_isadog(results_dic, dogfile):
            None - results_dic is mutable data type so no return needed.
     """           
     dognames_dic = {}
-    with open(dogfile, 'r') as infile:
-        dog_names = infile.readline()
-        while dog_names != '':
-            dog_names = [name.strip().lower() for name in dog_names]
-            for dog_name in dog_names:
-                if dog_name not in dognames_dic:
-                    dognames_dic[dog_name] = 1
-            dog_names = infile.readline()
+    with open(dogfile, "r") as infile:
+        for line in infile:
+            dog_name = line.strip()
+            dognames_dic[dog_name] = 1
     
     for key in results_dic:
         if results_dic[key][0] in dognames_dic:
@@ -89,4 +85,3 @@ def adjust_results4_isadog(results_dic, dogfile):
             else:
                 results_dic[key].extend((0, 0))
     None
-# adjust_results4_isadog(results_dic, dogfile)

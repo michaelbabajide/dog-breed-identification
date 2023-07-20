@@ -96,4 +96,3 @@ def print_results(results_dic, results_stats_dic, model,
                                                           results_dic[key][1]))
 
     None
-                

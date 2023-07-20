@@ -41,27 +41,20 @@ def get_pet_labels(image_dir):
       List. The list contains for following item:
          index 0 = pet image label (string)
     """
-    filename_list = listdir('pet_images/')
-    pet_labels_list = []
-    classifier_labels = []
-    for i in filename_list:
-        key = os.path.splitext(i)[0]
-        key = ''.join((x for x in key if not x.isdigit()))
-        key = key.rstrip('_').lower().replace('_',' ')
-        pet_labels_list.append(key)
-
+    in_files = listdir(image_dir)
         
     results_dic = {}
-    no_item_im_dic = len(results_dic)
-    for idx in range(0, len(filename_list), 1):
-        if filename_list[idx] not in results_dic:
-             results_dic[filename_list[idx]] = [pet_labels_list[idx]]
+    for idx in range(0, len(in_files), 1):
+        if in_files[idx][0] != ".":
+            filename = os.path.splitext(in_files[idx])[0]
+            filename = ''.join((x for x in filename if not x.isdigit()))
+            pet_label = filename.lower().replace("_", " ").rstrip(' ')
+#     no_item_im_dic = len(results_dic)
+        if in_files[idx] not in results_dic:
+            results_dic[in_files[idx]] = [pet_label]
         else:
-             print("** Warning: Key=", filename_list[idx], 
-                   "already exists in results_dic with value =", 
-                   results_dic[filename_list[idx]])
+            print("** Warning: Duplicate files exist in directory:", in_files[idx])
     
     # Replace None with the results_dic dictionary that you created with this
     # function
     return results_dic
-# get_pet_labels('pet_images/')
